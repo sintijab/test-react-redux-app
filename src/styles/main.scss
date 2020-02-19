@@ -1,0 +1,98 @@
+@import '_variables', '_mixins';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+* {
+	font-family: 'Open Sans Condesed', sans-serif, Arial, 'FontAwesome';
+	font-size: 1.03em;
+  box-sizing: border-box;
+
+	@include desktop {
+		font-size: 1em;
+	}
+}
+
+.board {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  background: $white;
+  margin: 2rem .5rem;
+
+  &:after {
+    content: "";
+    flex: auto;
+  }
+
+  @include tablet {
+		margin: 2rem 2rem;
+	}
+
+  @include desktop {
+		margin: 2rem 9rem;
+	}
+}
+
+.question {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 5px;
+  width: 100%;
+  min-height: 20rem;
+  margin-top: 1rem;
+  line-height: 1.5;
+  color: $semi-dark-gray;
+  background: $light-gray;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 1rem;
+  border: 1px solid $semi-light-gray;
+
+  @include tablet {
+		width: 33%;
+	}
+
+  @include desktop {
+		width: 20%;
+	}
+}
+
+.options {
+  width: 100%;
+  cursor: pointer;
+  color: $white;
+}
+
+.question_title {
+  margin: .5rem .5rem 2rem;
+  color: $dark-yellow-gray;
+  font-size: 1.1em;
+  min-height: 5rem;
+  align-self: flex-start;
+}
+
+.answer {
+  min-height: 3rem;
+  border: 1px solid $white;
+  border-radius: 1rem;
+  font-size: 1em;
+  margin: .3rem 0;
+  padding: .5rem .4rem .7rem;
+  background: $dark-yellow;
+  color: $yellow-gray;
+  line-height: 2;
+
+  &:hover {
+    background: $semi-yellow-gray;
+  }
+}
+
+.valid {
+  background: $green;
+}
+
+.invalid {
+  background: $red;
+}
