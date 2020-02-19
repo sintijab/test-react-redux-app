@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTests } from '../actions';
-import { Questions } from './Questions';
+import Question from './Question';
 import styles from '../styles/main.scss';
 
 class TestBoard extends Component {
@@ -10,6 +10,8 @@ class TestBoard extends Component {
     super(props);
     this.state = {
       loadedTests: [],
+      finalResult: 0,
+      totalAmount: 0,
     };
 
     this.setTests = this.setTests.bind(this);
@@ -18,13 +20,24 @@ class TestBoard extends Component {
 
   componentDidMount() {
     const { props } = this;
-    props.getTests();
+    const finalTestsResult = localStorage.getItem('finalTestsResult');
+    const totalTestsAmount = localStorage.getItem('totalTestsAmount');
+    if (finalTestsResult && totalTestsAmount) {
+      this.setState({
+        finalResult: finalTestsResult,
+        totalAmount: totalTestsAmount,
+      });
+      localStorage.removeItem('finalTestsResult');
+      localStorage.removeItem('totalTestsAmount');
+    } else {
+      props.getTests();
+    }
   }
 
   componentDidUpdate() {
     const { tests } = this.props;
     const { loadedTests } = this.state;
-    if (tests && !loadedTests.length) {
+    if (tests.length && !loadedTests.length) {
       this.setTests(tests);
     }
   }
@@ -35,7 +48,7 @@ class TestBoard extends Component {
 
   getQuestions() {
     const { loadedTests } = this.state;
-    return loadedTests.map((test, i) => {
+    return loadedTests.map((test) => {
       /* eslint-disable camelcase */
       const {
         question,
@@ -50,25 +63,33 @@ class TestBoard extends Component {
         * Math.floor(optionsLength));
       options[optionsLength] = options[randomIndex];
       options[randomIndex] = correct_answer;
-      const index = `${i}-q`;
       return (
-        <Questions
-          key={index}
+        <Question
           title={question}
           answer={correct_answer}
           options={options}
+          testsAmount={loadedTests.length}
         />
       );
     });
   }
 
   render() {
-    const { loadedTests } = this.state;
-    if (loadedTests.length) {
+    const { loadedTests, finalResult, totalAmount } = this.state;
+    const testScore = `${finalResult} / ${totalAmount}`;
+
+    if (loadedTests.length && !finalResult && !totalAmount) {
       const results = this.getQuestions();
       return (
         <div className={styles.board}>
           {results}
+        </div>
+      );
+    }
+    if (finalResult && totalAmount) {
+      return (
+        <div className={styles.score}>
+          {testScore}
         </div>
       );
     }

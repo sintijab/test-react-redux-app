@@ -5,6 +5,10 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
   coverageReporters: ["json", "html"],
   coverageDirectory: 'tests/coverage',
+  moduleNameMapper: {
+    "\\.(css|less|scss)$": "<rootDir>/node_modules/jest-css-modules"
+,
+  },
   coverageThreshold: {
     global: {
       branches: 50,
