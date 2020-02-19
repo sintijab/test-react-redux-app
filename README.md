@@ -37,6 +37,9 @@ Collect coverage information and reported in the output ('/test/coverage' direct
 npm run test-coverage
 ```
 
+### Notes
+The test items from provided API response could have unique identifier to use for the listing items. The incorrect items could be replaced by all items in structure to avoid additional array methods for merging all items together. The actions has not been separated due simplicity of app functionality. The score has been stored in localStorage in order to be able to add multiple session reports if it would be required. The test board items has been styled with flex grid responsive alignment across three viewports.
+
 ## Contribution
 
 * **Sintija Birgele**
