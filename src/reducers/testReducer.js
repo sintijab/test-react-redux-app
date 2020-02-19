@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  tests: [],
+  results: [],
   error: null,
 };
 
@@ -23,6 +23,7 @@ export default function testsReducer(state = initialState, action) {
         loading: false,
         error: null,
         results: action.payload,
+        iterationsScore: action.payload.length,
       };
     case GET_TESTS_FAILURE:
       return {

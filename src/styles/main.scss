@@ -18,6 +18,7 @@
   justify-content: space-around;
   background: $white;
   margin: 2rem .5rem;
+	justify-content: flex-start;
 
   &:after {
     content: "";
@@ -29,7 +30,7 @@
 	}
 
   @include desktop {
-		margin: 2rem 9rem;
+		margin: 2rem 10rem;
 	}
 }
 
@@ -91,8 +92,28 @@
 
 .valid {
   background: $green;
+  &:hover {
+    background: $green;
+  }
 }
 
 .invalid {
   background: $red;
+  &:hover {
+    background: $red;
+  }
+}
+
+.score {
+  font-size: 2em;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  bottom: 0;
+  text-align: center;
+  background: $dark-yellow;
+  margin: 3rem auto;
+  padding: 3rem 3rem;
+  border-radius: 1rem;
 }

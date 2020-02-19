@@ -1,3 +1,5 @@
 export const GET_TESTS = 'GET_TESTS';
 export const GET_TESTS_SUCCESS = 'GET_TESTS_SUCCESS';
 export const GET_TESTS_FAILURE = 'GET_TESTS_FAILURE';
+export const GET_RESULTS = 'GET_RESULTS';
+export const GET_FINAL_RESULT = 'GET_FINAL_RESULT';
